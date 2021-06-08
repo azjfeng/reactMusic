@@ -1,0 +1,29 @@
+  
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        (function(win){
+            const doc = win.document;
+            const baseWidth = 750;
+            const html = doc.documentElement;
+            const resizeEvt = 'orientationchange' in win ? 'orientationchange' : 'resize';
+            const recalc = function(){
+                const screenWidth = win.innerWidth || win.screen.width || 375;
+                html.style.fontSize = 100 * screenWidth / baseWidth + 'px' 
+            }
+            if(!doc.addEventListener) return ;
+            win.addEventListener(resizeEvt, recalc, false);
+            doc.addEventListener('DOMContentLoaded', recalc, false);
+        })(window)
+    </script>
+    <div id="root">
+
+    </div>
+</body>
+</html>

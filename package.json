@@ -1,0 +1,40 @@
+{
+  "name": "reactmusic",
+  "version": "1.0.0",
+  "description": "react音乐播放器",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack --config webpack.config.js",
+    "serve": "webpack serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/azjfeng/reactMusic.git"
+  },
+  "author": "azjfeng",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/azjfeng/reactMusic/issues"
+  },
+  "homepage": "https://github.com/azjfeng/reactMusic#readme",
+  "dependencies": {
+    "@babel/core": "^7.14.3",
+    "@babel/preset-env": "^7.14.4",
+    "@babel/preset-react": "^7.13.13",
+    "babel-loader": "^8.2.2",
+    "css-loader": "^5.2.6",
+    "less": "^4.1.1",
+    "less-loader": "^9.0.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-redux": "^7.2.4",
+    "style-loader": "^2.0.0",
+    "webpack": "^5.38.1",
+    "webpack-cli": "^4.7.0"
+  },
+  "devDependencies": {
+    "html-webpack-plugin": "^5.3.1",
+    "webpack-dev-server": "^3.11.2"
+  }
+}
