@@ -4,21 +4,32 @@ class Form extends React.Component {
     constructor(props) {
         super(props);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.state = {value:"grapefruit"};
+        this.state = { value: "grapefruit" };
         this.handleChange = this.handleChange.bind(this);
+        this.textInput = React.createRef();
+        this.focusTextInput = this.focusTextInput.bind(this);
     }
     handleSubmit(e) {
         e.preventDefault();
         console.log(this.state.value)
     }
-    handleChange(e){
+    handleChange(e) {
         this.setState({
-            value:e.target.value
+            value: e.target.value
         })
+    }
+    focusTextInput(){
+        this.textInput.current.focus()
     }
     render() {
         return (
             <form onSubmit={this.handleSubmit}>
+                <input type="text" ref={this.textInput} />
+                <input
+                    type="button"
+                    value="Focus the text input"
+                    onClick={this.focusTextInput}
+                />
                 <label>
                     选择你喜欢的风味:
                     <select value={this.state.value} onChange={this.handleChange}>

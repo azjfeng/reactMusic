@@ -21,16 +21,14 @@ router.post('/list', async (ctx, next) => {
             data: '',
             withCredentials: true
         }).then((res) => {
-            reslove(res)
+            // console.log(res.data)
+            reslove(res.data)
         }).catch((err) => {
-            // console.debug(err)
+            console.debug(err)
             reslove({ code: 1 })
         })
     })
-
-
     const data = await promise;
-    console.log(data)
     ctx.body = data;
 
 })

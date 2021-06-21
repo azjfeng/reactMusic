@@ -2,7 +2,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 module.exports = {
     entry: {
-        index:'./src/index.js',
+        index:'./src/index.tsx',
     },
     output: {
         filename:"[name].js"
@@ -10,8 +10,8 @@ module.exports = {
     module:{
         rules:[
             {
-                test:/\.(js|jsx)$/,
-                use: 'babel-loader',
+                test:/\.(js|tsx)$/,
+                use: ['babel-loader'],
                 exclude: /node_modules/
             },
             {
@@ -42,5 +42,5 @@ module.exports = {
         minimize: true,
     },
     watch: true, //用来执行热更新
-    externals: ['.js', '.json', '.vue', '.css', '.html','.less'],
+        externals: ['.tsx','.js', '.json', '.vue', '.css', '.html','.less'],
 } 

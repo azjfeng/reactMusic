@@ -1,4 +1,4 @@
-import {ThemeContext} from './theme-context';
+import {ThemeContext} from './tsx';
 import React from 'react';
 class ThemedButton extends React.Component {
   render() {
