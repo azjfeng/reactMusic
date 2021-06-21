@@ -15,37 +15,37 @@ import List from './list/List.tsx';
 // }
 
 class App extends React.Component {
-    constructor(props) {
-        super(props)
-        // this.state = {
-        //     theme: themes.light
-        // }
-        // this.toggleTheme = () => {
-        //     this.setState(state => ({
-        //         theme:
-        //             state.theme === themes.dark
-        //                 ? themes.light
-        //                 : themes.dark,
-        //     }));
-        // };
-    }
-    render() {
-        const nums = [1, 2, 3, 4, 5, 6, 7];
-        return (
-            <div className="App">
-                {/* <Clock /> */}
-                <List nums={nums} />
-                {/* <Form />
+  constructor(props) {
+    super(props)
+    // this.state = {
+    //     theme: themes.light
+    // }
+    // this.toggleTheme = () => {
+    //     this.setState(state => ({
+    //         theme:
+    //             state.theme === themes.dark
+    //                 ? themes.light
+    //                 : themes.dark,
+    //     }));
+    // };
+  }
+  render() {
+    const nums: number[] = [1, 2, 3, 4, 5, 6, 7];
+    return (
+      <div className="App">
+        {/* <Clock /> */}
+        <List nums={nums} />
+        {/* <Form />
                 <Music />
                 <ThemeContext.Provider value={this.state.theme}>
                     <Toolbar changeTheme={this.toggleTheme} />
                 </ThemeContext.Provider>
                 <ThemedButton /> */}
-                {/* <Form /> */}
-                {/* <Music /> */}
-            </div>
-        )
-    }
+        {/* <Form /> */}
+        {/* <Music /> */}
+      </div>
+    )
+  }
 }
 
 export default App;
