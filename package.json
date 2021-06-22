@@ -38,6 +38,7 @@
     "react-redux": "^7.2.4",
     "request": "^2.88.2",
     "style-loader": "^2.0.0",
+    "ts-loader": "^9.2.3",
     "webpack": "^5.38.1",
     "webpack-cli": "^4.7.0"
   },
