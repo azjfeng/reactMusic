@@ -1,6 +1,7 @@
 import React from 'react';
 import '../../style/form/form.less';
-class Form extends React.Component {
+class Form extends React.Component<any, any>{
+    private textInput: React.RefObject<HTMLInputElement>; //申明ref
     constructor(props) {
         super(props);
         this.handleSubmit = this.handleSubmit.bind(this);

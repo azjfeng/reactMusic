@@ -16,7 +16,7 @@ router.get('/', async (ctx, next) => {
 router.post('/list', async (ctx, next) => {
     let promise = new Promise((reslove, reject) => {
         axios.request({
-            url: 'https://pay.qq.com/h5/store_config/productList/1450029249.json',
+            url: 'www.baidu.com',
             method: 'GET',
             data: '',
             withCredentials: true
