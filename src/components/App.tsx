@@ -1,5 +1,5 @@
 import React from 'react';
-import Todos from '../store/todo/container.tsx'
+import Header from '../components/header/Header.tsx'
 class App extends React.Component {
   constructor(props) {
     super(props)
@@ -7,7 +7,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <Todos />
+        <Header />
       </div>
     )
   }

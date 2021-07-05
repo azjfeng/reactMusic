@@ -1,4 +1,5 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const path = require('path');
 module.exports = {
   entry: {
@@ -27,7 +28,7 @@ module.exports = {
       {
         test: /\.less$/,
         use: ['style-loader', 'css-loader', 'less-loader']
-      }
+      },
     ]
   },
   mode: "production",
@@ -41,6 +42,11 @@ module.exports = {
       title: "音乐播放器",
       filename: "index.html",
       template: "./template/template.html",
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: "src/img", to: "img" },
+      ],
     })
   ],
   //压缩代码

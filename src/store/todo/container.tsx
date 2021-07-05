@@ -3,7 +3,6 @@ import { connect} from 'react-redux'
 import addTodo from './action'
 // Map Redux state to component props
 function mapStateToProps(state) {
-  console.log(state)
     return {
       value: state.todo
     }
