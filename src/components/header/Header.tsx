@@ -12,7 +12,7 @@ class Header extends React.Component<IProps, IState>{
                     <a>关于我们</a>
                 </div>
                 <div className="header_bg">
-                    <img src="../../img/new_top-min.jpg" alt=""/>
+                    <img src="../../assets/img/new_top-min.jpg" alt=""/>
                 </div>
             </div>
         )

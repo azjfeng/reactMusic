@@ -29,6 +29,13 @@ module.exports = {
         test: /\.less$/,
         use: ['style-loader', 'css-loader', 'less-loader']
       },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        loader: 'file-loader',
+        options: {
+          outputPath: 'assets',
+        },
+      },
     ]
   },
   mode: "production",
@@ -45,7 +52,7 @@ module.exports = {
     }),
     new CopyWebpackPlugin({
       patterns: [
-        { from: "src/img", to: "img" },
+        { from: "src/assets", to: "assets" },
       ],
     })
   ],
