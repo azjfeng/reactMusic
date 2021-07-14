@@ -1,6 +1,8 @@
 import React from 'react';
-import Home from '../components/home/Home.tsx'
-import Todo from '../store/todo/container.tsx'
+import Home from '../components/home/Home.tsx';
+import Todo from '../store/todo/container.tsx';
+import Header from './header/Header.tsx';
+import Nav from './nav/Nav.tsx'
 import {
   BrowserRouter as Router,
   Switch,
@@ -15,16 +17,8 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <Router>
-          <Switch>
-            <Route exact path="/">
-              <Home />
-            </Route>
-            <Route path="/todo">
-              <Todo />
-            </Route>
-          </Switch>
-        </Router>
+        <Header />
+        <Nav />
       </div>
     )
   }
