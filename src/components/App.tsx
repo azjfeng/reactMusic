@@ -2,7 +2,8 @@ import React from 'react';
 import Home from '../components/home/Home.tsx';
 import Todo from '../store/todo/container.tsx';
 import Header from './header/Header.tsx';
-import Nav from './nav/Nav.tsx'
+import Nav from './nav/Nav.tsx';
+import Edit from './edit/Edit.tsx'
 import {
   HashRouter as Router,
   Switch,
@@ -19,7 +20,9 @@ class App extends React.Component {
     return (
       <div className="App">
         <Router>
-          <Route path="/" component={Header} >
+          <Route exact path="/" component={Header} >
+          </Route>
+          <Route exact path="/edit" component={Edit} >
           </Route>
           <Route exact path="/nav" component={Nav} >
           </Route>
