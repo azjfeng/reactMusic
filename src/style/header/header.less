@@ -6,6 +6,7 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    background: #1C2327;
 }
 .header::before{
     background: #000 linear-gradient(to left, #4cd964, #5ac8fa, #007aff, #34aadc, #5856d6, #ff2d55);
@@ -16,7 +17,7 @@
     width: 100%;
 }
 .header .header_nav{
-    width: 100% ;
+    // width: 100% ;
     color: white;
     height: 60px;
     display: flex;
@@ -24,10 +25,13 @@
     justify-content: center;
     background: #1C2327;
     font-weight: bold;
+    width: 1200px;
+
 }
 
 .header .author{
-    width: 30%;
+    width: 50%;
+    text-align: left;
 }
 
 .header .nav_btn{
@@ -45,6 +49,8 @@
 .nav_btn ul{
     display: flex;
     flex-direction: row;
+    justify-content: flex-end;
+
 }
 
 .header .nav_btn a:hover{

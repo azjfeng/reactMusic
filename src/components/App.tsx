@@ -4,10 +4,11 @@ import Todo from '../store/todo/container.tsx';
 import Header from './header/Header.tsx';
 import Nav from './nav/Nav.tsx'
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Switch,
   Route,
-  Link
+  Link,
+  IndexRoute 
 } from "react-router-dom";
 // 首先我们需要导入一些组件...
 class App extends React.Component {
@@ -17,8 +18,12 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <Header />
-        <Nav />
+        <Router>
+          <Route path="/" component={Header} >
+          </Route>
+          <Route exact path="/nav" component={Nav} >
+          </Route>
+        </Router>
       </div>
     )
   }
