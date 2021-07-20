@@ -20,7 +20,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <Router>
-          <Route exact path="/" component={Header} >
+          <Route  path="/" component={Header} >
           </Route>
           <Route exact path="/edit" component={Edit} >
           </Route>
