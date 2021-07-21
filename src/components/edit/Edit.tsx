@@ -9,11 +9,11 @@ class Edit extends React.Component {
         const height = document.documentElement.offsetHeight;
         const E = window.wangEditor;
         const editor = new E(".edit1");
-        editor.config.height = (height / 2)
+        editor.config.height = (height / 2);
 
         // 或者 const editor = new E(document.getElementById('div1'))
-        editor.create()
-        window.editorEle = editor
+        editor.create();
+        window.editorEle = editor;
     }
     saveData() {
         console.log(editorEle.txt.html())

@@ -22,10 +22,10 @@ class Home extends React.Component<IProps, IState>{
         { id: 4, value: '../../assets/icon/weixin.png' }
       ],
       contentList: [
-        { title: 'js防抖与节流的区别及实现', img: '../../assets/img/2019-9-6.jpg', desc: "ECMAScript发展进程中，会有很多功能的更新，比如销毁，箭头功能，模块，它们极大的改变JavaScript编写方式，可能有些人喜欢，有些人不喜欢，但像每个新功能一样，我们最终会习惯它们。新版本的ECMAScript引入了三个新的逻辑赋值运算符：空运算符，AND和OR运算符，这些运算符的出现，也是希望让我们的代码更干净简洁，下面分享几个优雅的JavaScript运算符使用技巧" },
-        { title: 'js防抖与节流的区别及实现', img: '../../assets/img/2019-9-6.jpg', desc: "ECMAScript发展进程中，会有很多功能的更新，比如销毁，箭头功能，模块，它们极大的改变JavaScript编写方式，可能有些人喜欢，有些人不喜欢，但像每个新功能一样，我们最终会习惯它们。新版本的ECMAScript引入了三个新的逻辑赋值运算符：空运算符，AND和OR运算符，这些运算符的出现，也是希望让我们的代码更干净简洁，下面分享几个优雅的JavaScript运算符使用技巧" },
-        { title: 'js防抖与节流的区别及实现', img: '../../assets/img/2019-9-6.jpg', desc: "ECMAScript发展进程中，会有很多功能的更新，比如销毁，箭头功能，模块，它们极大的改变JavaScript编写方式，可能有些人喜欢，有些人不喜欢，但像每个新功能一样，我们最终会习惯它们。新版本的ECMAScript引入了三个新的逻辑赋值运算符：空运算符，AND和OR运算符，这些运算符的出现，也是希望让我们的代码更干净简洁，下面分享几个优雅的JavaScript运算符使用技巧" },
-        { title: 'js防抖与节流的区别及实现', img: '../../assets/img/2019-9-6.jpg', desc: "ECMAScript发展进程中，会有很多功能的更新，比如销毁，箭头功能，模块，它们极大的改变JavaScript编写方式，可能有些人喜欢，有些人不喜欢，但像每个新功能一样，我们最终会习惯它们。新版本的ECMAScript引入了三个新的逻辑赋值运算符：空运算符，AND和OR运算符，这些运算符的出现，也是希望让我们的代码更干净简洁，下面分享几个优雅的JavaScript运算符使用技巧" },
+        { title: 'js防抖与节流的区别及实现', img: '../../assets/img/2019-9-6.jpg', content: "ECMAScript发展进程中，会有很多功能的更新，比如销毁，箭头功能，模块，它们极大的改变JavaScript编写方式，可能有些人喜欢，有些人不喜欢，但像每个新功能一样，我们最终会习惯它们。新版本的ECMAScript引入了三个新的逻辑赋值运算符：空运算符，AND和OR运算符，这些运算符的出现，也是希望让我们的代码更干净简洁，下面分享几个优雅的JavaScript运算符使用技巧" },
+        { title: 'js防抖与节流的区别及实现', img: '../../assets/img/2019-9-6.jpg', content: "ECMAScript发展进程中，会有很多功能的更新，比如销毁，箭头功能，模块，它们极大的改变JavaScript编写方式，可能有些人喜欢，有些人不喜欢，但像每个新功能一样，我们最终会习惯它们。新版本的ECMAScript引入了三个新的逻辑赋值运算符：空运算符，AND和OR运算符，这些运算符的出现，也是希望让我们的代码更干净简洁，下面分享几个优雅的JavaScript运算符使用技巧" },
+        { title: 'js防抖与节流的区别及实现', img: '../../assets/img/2019-9-6.jpg', content: "ECMAScript发展进程中，会有很多功能的更新，比如销毁，箭头功能，模块，它们极大的改变JavaScript编写方式，可能有些人喜欢，有些人不喜欢，但像每个新功能一样，我们最终会习惯它们。新版本的ECMAScript引入了三个新的逻辑赋值运算符：空运算符，AND和OR运算符，这些运算符的出现，也是希望让我们的代码更干净简洁，下面分享几个优雅的JavaScript运算符使用技巧" },
+        { title: 'js防抖与节流的区别及实现', img: '../../assets/img/2019-9-6.jpg', content: "ECMAScript发展进程中，会有很多功能的更新，比如销毁，箭头功能，模块，它们极大的改变JavaScript编写方式，可能有些人喜欢，有些人不喜欢，但像每个新功能一样，我们最终会习惯它们。新版本的ECMAScript引入了三个新的逻辑赋值运算符：空运算符，AND和OR运算符，这些运算符的出现，也是希望让我们的代码更干净简洁，下面分享几个优雅的JavaScript运算符使用技巧" },
       ]
     }
   }
@@ -43,6 +43,23 @@ class Home extends React.Component<IProps, IState>{
         prevEl: '.swiper-button-prev',
       },
     })
+    this.getTechnologyShare();
+  }
+  getTechnologyShare() {
+    const that = this;
+    fetch('/getTechnologyShare', {
+      method: "post",
+      body: JSON.stringify({ key: '111', value: '2132' }) // must match 'Content-Type' header
+    })
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (myJson) {
+        that.setState({
+          contentList:myJson
+        })
+        console.log(that.state.contentList);
+      });
   }
   render() {
     const swiper = this.state.swiperList;
@@ -105,9 +122,9 @@ class Home extends React.Component<IProps, IState>{
                 {
                   contentList.map((item) => {
                     return <div className="recommend_content_item">
-                      <img src={item.img} alt="" />
+                      <img src={item.image} alt="" />
                       <span className="item_title">{item.title}</span>
-                      <span className="item_desc">{item.desc}</span>
+                      <span className="item_desc">{item.content}</span>
                       <div className="item_footer">
                         <span className="item_footer_left">+文章阅读</span>
                         <div className="item_footer_right">
