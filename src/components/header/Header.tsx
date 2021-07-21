@@ -1,7 +1,7 @@
 import React from 'react'
 import '../../style/header/header.less'
 import Home from '../home/Home.tsx';
-import Todo from '../../store/todo/container.tsx'
+import Detail from '../detail/Detail.tsx'
 import {
     HashRouter as Router,
     Switch,
@@ -55,7 +55,7 @@ class Header extends React.Component<IProps, IState>{
                 </div>
                 <Switch>
                     <Route exact path="/" component={Home} />
-                    <Route exact path="/todo" component={Todo} />
+                    <Route exact path="/detail/:id" component={Detail} />
                 </Switch>
             </Router>
         )

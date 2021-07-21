@@ -54,18 +54,21 @@ router.post('/list', async (ctx, next) => {
 })
 
 router.post('/addTechnologyShare', async (ctx, next) => {
+    const { auther, title, content, desc } = JSON.parse(ctx.request.body);
     let promise = new Promise((reslove, reject) => {
         pool.getConnection((err, conn) => {
             if (err) {
                 console.log(err + 'aaaaaaaa')
+                reslove({ code: -1, errMessage: "数据库存储错误" });
             }
-            const sql = "insert into  technology_share(id,auther,title,create_time,content,support,watch_num,image) values(?,?,?,?,?,?,?,?)";
-            conn.query(sql, [null, 'jameinfeng', 'test', new Date(), 'testcontent', 1, 1,'../../assets/img/2019-9-6.jpg'], (err, result) => {
+            const sql = "insert into technology_share(id,auther,title,contentdesc,create_time,content,support,watch_num,image) values(?,?,?,?,?,?,?,?,?)";
+            conn.query(sql, [null, auther, title, desc, new Date(), content, 1, 1, '../../assets/img/2019-9-6.jpg'], (err, result) => {
                 if (err) {
                     console.log(err)
                     return;
                 }
                 conn.release();
+                reslove({ code: 0, message: '添加文章成功' });
             });
         });
     })
@@ -74,7 +77,6 @@ router.post('/addTechnologyShare', async (ctx, next) => {
 })
 
 router.post('/getTechnologyShare', async (ctx, next) => {
-    console.log(ctx.request.body)
     let promise = new Promise((reslove, reject) => {
         pool.getConnection((err, conn) => {
             if (err) {
@@ -95,7 +97,27 @@ router.post('/getTechnologyShare', async (ctx, next) => {
     ctx.body = data;
 })
 
-
+router.post('/getDetail', async (ctx, next) => {
+    const {id} = JSON.parse(ctx.request.body)
+    let promise = new Promise((reslove, reject) => {
+        pool.getConnection((err, conn) => {
+            if (err) {
+                console.log(err + 'aaaaaaaa')
+            }
+            const sql = "select * from technology_share where id = ? ";
+            conn.query(sql,[id], (err, result) => {
+                if (err) {
+                    console.log(err)
+                    return;
+                }
+                conn.release();
+                reslove(result)
+            });
+        });
+    })
+    const data = await promise;
+    ctx.body = data;
+})
 
 app.use(router.routes()).use(router.allowedMethods());
 

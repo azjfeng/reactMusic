@@ -1,9 +1,13 @@
 import React from 'react'
 import '../../style/home/home.less'
-import Header from '../header/Header.tsx'
+
+import {
+  Link
+} from "react-router-dom";
 class Home extends React.Component<IProps, IState>{
   constructor(props) {
-    super(props)
+    super(props);
+    this.detail = this.detail.bind(this);
     this.state = {
       swiperList: [
         { id: 1, value: '../../assets/img/2019-9-6.jpg' },
@@ -22,10 +26,7 @@ class Home extends React.Component<IProps, IState>{
         { id: 4, value: '../../assets/icon/weixin.png' }
       ],
       contentList: [
-        { title: 'js防抖与节流的区别及实现', img: '../../assets/img/2019-9-6.jpg', content: "ECMAScript发展进程中，会有很多功能的更新，比如销毁，箭头功能，模块，它们极大的改变JavaScript编写方式，可能有些人喜欢，有些人不喜欢，但像每个新功能一样，我们最终会习惯它们。新版本的ECMAScript引入了三个新的逻辑赋值运算符：空运算符，AND和OR运算符，这些运算符的出现，也是希望让我们的代码更干净简洁，下面分享几个优雅的JavaScript运算符使用技巧" },
-        { title: 'js防抖与节流的区别及实现', img: '../../assets/img/2019-9-6.jpg', content: "ECMAScript发展进程中，会有很多功能的更新，比如销毁，箭头功能，模块，它们极大的改变JavaScript编写方式，可能有些人喜欢，有些人不喜欢，但像每个新功能一样，我们最终会习惯它们。新版本的ECMAScript引入了三个新的逻辑赋值运算符：空运算符，AND和OR运算符，这些运算符的出现，也是希望让我们的代码更干净简洁，下面分享几个优雅的JavaScript运算符使用技巧" },
-        { title: 'js防抖与节流的区别及实现', img: '../../assets/img/2019-9-6.jpg', content: "ECMAScript发展进程中，会有很多功能的更新，比如销毁，箭头功能，模块，它们极大的改变JavaScript编写方式，可能有些人喜欢，有些人不喜欢，但像每个新功能一样，我们最终会习惯它们。新版本的ECMAScript引入了三个新的逻辑赋值运算符：空运算符，AND和OR运算符，这些运算符的出现，也是希望让我们的代码更干净简洁，下面分享几个优雅的JavaScript运算符使用技巧" },
-        { title: 'js防抖与节流的区别及实现', img: '../../assets/img/2019-9-6.jpg', content: "ECMAScript发展进程中，会有很多功能的更新，比如销毁，箭头功能，模块，它们极大的改变JavaScript编写方式，可能有些人喜欢，有些人不喜欢，但像每个新功能一样，我们最终会习惯它们。新版本的ECMAScript引入了三个新的逻辑赋值运算符：空运算符，AND和OR运算符，这些运算符的出现，也是希望让我们的代码更干净简洁，下面分享几个优雅的JavaScript运算符使用技巧" },
+
       ]
     }
   }
@@ -56,10 +57,12 @@ class Home extends React.Component<IProps, IState>{
       })
       .then(function (myJson) {
         that.setState({
-          contentList:myJson
+          contentList: myJson
         })
         console.log(that.state.contentList);
       });
+  }
+  detail(key) {
   }
   render() {
     const swiper = this.state.swiperList;
@@ -120,18 +123,20 @@ class Home extends React.Component<IProps, IState>{
               </div>
               <div className="recommend_content">
                 {
-                  contentList.map((item) => {
-                    return <div className="recommend_content_item">
-                      <img src={item.image} alt="" />
-                      <span className="item_title">{item.title}</span>
-                      <span className="item_desc">{item.content}</span>
-                      <div className="item_footer">
-                        <span className="item_footer_left">+文章阅读</span>
-                        <div className="item_footer_right">
-                          <img src="../../assets/icon/giveLike.png" alt="" />
-                          <span>20</span>
-                        </div>
-                      </div>
+                  contentList.map((item, key) => {
+                    return <div className="recommend_content_item" onClick={this.detail.bind(this, key)} >
+                      <Link to={'/detail/'+item.id} key={key}>
+                        <img src={item.image} alt="" />
+                        <span className="item_title">{item.title}</span>
+                        <span className="item_desc">{item.contentdesc}</span>
+                        <div className="item_footer">
+                          <span className="item_footer_left">+文章阅读</span>
+                          <div className="item_footer_right">
+                            <img src="../../assets/icon/giveLike.png" alt="" />
+                            <span>{item.support}</span>
+                          </div>
+                        </div></Link>
+
                     </div>
                   })
                 }
