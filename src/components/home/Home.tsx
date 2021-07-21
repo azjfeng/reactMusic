@@ -125,7 +125,7 @@ class Home extends React.Component<IProps, IState>{
                 {
                   contentList.map((item, key) => {
                     return <div className="recommend_content_item" onClick={this.detail.bind(this, key)} >
-                      <Link to={'/detail/'+item.id} key={key}>
+                      <Link to={'/detail/'+item.title} key={key}>
                         <img src={item.image} alt="" />
                         <span className="item_title">{item.title}</span>
                         <span className="item_desc">{item.contentdesc}</span>

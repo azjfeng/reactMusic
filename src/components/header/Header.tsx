@@ -55,7 +55,7 @@ class Header extends React.Component<IProps, IState>{
                 </div>
                 <Switch>
                     <Route exact path="/" component={Home} />
-                    <Route exact path="/detail/:id" component={Detail} />
+                    <Route exact path="/detail/:title" component={Detail} />
                 </Switch>
             </Router>
         )

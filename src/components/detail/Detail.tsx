@@ -9,7 +9,7 @@ class Todo extends React.Component{
     }
   }
   componentDidMount(){
-    this.searchDetail({id: this.props.match.params.id})
+    this.searchDetail({title: this.props.match.params.title})
   }
   searchDetail(params){
     const that = this;

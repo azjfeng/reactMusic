@@ -7,7 +7,7 @@ const static = require('koa-static');
 const axios = require('axios');
 const koaBody = require('koa-body');
 const path = require('path')
-
+const fs = require('fs')
 app.use(koaBody({
     multipart: true, // 支持文件上传
     formidable: {
@@ -55,6 +55,13 @@ router.post('/list', async (ctx, next) => {
 
 router.post('/addTechnologyShare', async (ctx, next) => {
     const { auther, title, content, desc } = JSON.parse(ctx.request.body);
+    fs.writeFile(`./text/${title}.txt`, content, 'utf8', function (error) {
+        if (error) {
+            console.log(error);
+            return false;
+        }
+        console.log('写入成功');
+    })
     let promise = new Promise((reslove, reject) => {
         pool.getConnection((err, conn) => {
             if (err) {
@@ -62,7 +69,7 @@ router.post('/addTechnologyShare', async (ctx, next) => {
                 reslove({ code: -1, errMessage: "数据库存储错误" });
             }
             const sql = "insert into technology_share(id,auther,title,contentdesc,create_time,content,support,watch_num,image) values(?,?,?,?,?,?,?,?,?)";
-            conn.query(sql, [null, auther, title, desc, new Date(), content, 1, 1, '../../assets/img/2019-9-6.jpg'], (err, result) => {
+            conn.query(sql, [null, auther, title, desc, new Date(), '', 1, 1, '../../assets/img/2019-9-6.jpg'], (err, result) => {
                 if (err) {
                     console.log(err)
                     return;
@@ -98,14 +105,22 @@ router.post('/getTechnologyShare', async (ctx, next) => {
 })
 
 router.post('/getDetail', async (ctx, next) => {
-    const {id} = JSON.parse(ctx.request.body)
+    const { title } = JSON.parse(ctx.request.body)
+    //5.fs.readFile 读取文件  
+    fs.readFile(`./text/${title}.txt`, function (error, data) {
+        if (error) {
+            console.log(error);
+            return false;
+        }
+        console.log(data.toString());  //读取出所有行的信息  
+    })
     let promise = new Promise((reslove, reject) => {
         pool.getConnection((err, conn) => {
             if (err) {
                 console.log(err + 'aaaaaaaa')
             }
-            const sql = "select * from technology_share where id = ? ";
-            conn.query(sql,[id], (err, result) => {
+            const sql = "select * from technology_share where title = ? ";
+            conn.query(sql, [title], (err, result) => {
                 if (err) {
                     console.log(err)
                     return;
@@ -118,6 +133,9 @@ router.post('/getDetail', async (ctx, next) => {
     const data = await promise;
     ctx.body = data;
 })
+
+
+
 
 app.use(router.routes()).use(router.allowedMethods());
 
