@@ -23,16 +23,22 @@ class Todo extends React.Component{
       })
       .then(function (myJson) {
         that.setState({
-            detail: myJson.data
+            detail: myJson.data.result[0]
         })
-        $('.detail').html(myJson.content);
-        console.log(that.state.detail);
+        $('.detail').append(myJson.content);
+        console.log(myJson.data.result);
       });
   }
   render(){
+    const data = this.state.detail
+    // console.log(data)
     return (
      <div className="detail markdown-body">
-
+        <h2>{data.title}</h2>
+        <div className="time">
+          <span>{new Date(data.create_time).toLocaleString()}</span>
+          <span className="watch_num"><img src="../../assets/icon/see.png" alt="" />{data.watch_num}</span>
+        </div>
      </div>
     )
   }
