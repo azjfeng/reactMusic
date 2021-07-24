@@ -2,6 +2,9 @@ import React from 'react'
 import '../../style/md.less'
 import '../../style/detail/detail.less'
 import '../../lib/jquery'
+import {
+  Link
+} from 'react-router-dom'
 class Todo extends React.Component{
   constructor(props){
     super(props)
@@ -34,7 +37,10 @@ class Todo extends React.Component{
     // console.log(data)
     return (
      <div className="detail markdown-body">
+       <div className="title">
         <h2>{data.title}</h2>
+        <Link to={'/reedit/'+data.title}>编辑</Link>
+       </div>
         <div className="time">
           <span>{new Date(data.create_time).toLocaleString()}</span>
           <span className="watch_num"><img src="../../assets/icon/see.png" alt="" />{data.watch_num}</span>

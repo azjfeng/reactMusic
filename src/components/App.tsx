@@ -4,6 +4,7 @@ import Todo from '../store/todo/container.tsx';
 import Header from './header/Header.tsx';
 import Nav from './nav/Nav.tsx';
 import Edit from './edit/Edit.tsx'
+import ReEdit from './reedit/ReEdit.tsx'
 import {
   HashRouter as Router,
   Switch,
@@ -25,6 +26,8 @@ class App extends React.Component {
           <Route exact path="/edit" component={Edit} >
           </Route>
           <Route exact path="/nav" component={Nav} >
+          </Route>
+          <Route exact path="/reedit/:title" component={ReEdit} >
           </Route>
         </Router>
       </div>

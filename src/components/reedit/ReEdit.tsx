@@ -1,6 +1,6 @@
 import React from 'react';
 import '../../style/edit/edit.less'
-class Edit extends React.Component {
+class ReEdit extends React.Component {
     constructor(props) {
         super(props)
         this.saveData = this.saveData.bind(this);
@@ -14,7 +14,8 @@ class Edit extends React.Component {
         }
     }
     componentDidMount() {
-        console.log(this.props.match)
+        const params = this.props.match.params.title
+        console.log(this.props.match.params.title)
         const height = document.documentElement.offsetHeight;
         const E = window.wangEditor;
         const editor = new E(".edit1");
@@ -23,6 +24,7 @@ class Edit extends React.Component {
         // 或者 const editor = new E(document.getElementById('div1'))
         editor.create();
         window.editorEle = editor;
+        this.getData({title:params})
     }
     saveData() {
         console.log(this.state);
@@ -66,6 +68,26 @@ class Edit extends React.Component {
                 console.log(myJson);
             });
     }
+    getData(params){
+        const that = this;
+        fetch('/getDetail', {
+            method: "post",
+            body: JSON.stringify(params) // must match 'Content-Type' header
+          })
+            .then(function (response) {
+              return response.json();
+            })
+            .then(function (myJson) {
+              that.setState({
+                  detail: myJson.data.result[0]
+              })
+              window.editorEle.txt.html(myJson.content) // 重新设置编辑器内容
+            //   $('.detail').append(myJson.content);
+              console.log(myJson.data.result);
+            }) .catch((err) =>{
+                console.log(err)
+            });
+    }
     render() {
         return (
             <div className="edit">
@@ -91,4 +113,4 @@ class Edit extends React.Component {
     }
 }
 
-export default Edit;
+export default ReEdit;

@@ -106,6 +106,7 @@ router.post('/getTechnologyShare', async (ctx, next) => {
 
 router.post('/getDetail', async (ctx, next) => {
     const { title } = JSON.parse(ctx.request.body)
+    console.log(ctx.request.body)
     let content = ''
     let promise = new Promise((reslove, reject) => {
         //5.fs.readFile 读取文件  
