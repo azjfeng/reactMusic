@@ -1,6 +1,7 @@
 import React from 'react'
 import '../../style/md.less'
 import '../../style/detail/detail.less'
+import '../../lib/jquery'
 class Todo extends React.Component{
   constructor(props){
     super(props)
@@ -22,9 +23,9 @@ class Todo extends React.Component{
       })
       .then(function (myJson) {
         that.setState({
-            detail: myJson
+            detail: myJson.data
         })
-        $('.detail').html(myJson[0].content);
+        $('.detail').html(myJson.content);
         console.log(that.state.detail);
       });
   }

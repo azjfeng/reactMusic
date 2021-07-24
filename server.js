@@ -106,32 +106,33 @@ router.post('/getTechnologyShare', async (ctx, next) => {
 
 router.post('/getDetail', async (ctx, next) => {
     const { title } = JSON.parse(ctx.request.body)
-    //5.fs.readFile 读取文件  
-    fs.readFile(`./text/${title}.txt`, function (error, data) {
-        if (error) {
-            console.log(error);
-            return false;
-        }
-        console.log(data.toString());  //读取出所有行的信息  
-    })
+    let content = ''
     let promise = new Promise((reslove, reject) => {
-        pool.getConnection((err, conn) => {
-            if (err) {
-                console.log(err + 'aaaaaaaa')
+        //5.fs.readFile 读取文件  
+        fs.readFile(`./text/${title}.txt`, function (error, data) {
+            if (error) {
+                console.log(error);
+                return false;
             }
-            const sql = "select * from technology_share where title = ? ";
-            conn.query(sql, [title], (err, result) => {
+            content = data.toString()
+            pool.getConnection((err, conn) => {
                 if (err) {
-                    console.log(err)
-                    return;
+                    console.log(err + 'aaaaaaaa')
                 }
-                conn.release();
-                reslove(result)
+                const sql = "select * from technology_share where title = ? ";
+                conn.query(sql, [title], (err, result) => {
+                    if (err) {
+                        console.log(err)
+                        return;
+                    }
+                    conn.release();
+                    reslove({result,content})
+                });
             });
-        });
+        })
     })
     const data = await promise;
-    ctx.body = data;
+    ctx.body = { data, content };
 })
 
 
