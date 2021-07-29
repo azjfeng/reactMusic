@@ -136,7 +136,35 @@ router.post('/getDetail', async (ctx, next) => {
     ctx.body = { data, content };
 })
 
-
+router.post('/updateTechnologyShare', async (ctx, next) => {
+    const { auther, title, content, desc, id } = JSON.parse(ctx.request.body);
+    fs.writeFile(`./text/${title}.txt`, content, 'utf8', function (error) {
+        if (error) {
+            console.log(error);
+            return false;
+        }
+        console.log('写入成功');
+    })
+    let promise = new Promise((reslove, reject) => {
+        pool.getConnection((err, conn) => {
+            if (err) {
+                console.log(err + 'aaaaaaaa')
+                reslove({ code: -1, errMessage: "数据库存储错误" });
+            }
+            const sql = "update technology_share set auther = ?, title = ? ,contentDesc = ? where id = ?";
+            conn.query(sql, [auther, title, desc, id], (err, result) => {
+                if (err) {
+                    console.log(err)
+                    return;
+                }
+                conn.release();
+                reslove({ code: 0, message: '更新文章成功' });
+            });
+        });
+    })
+    const data = await promise;
+    ctx.body = data;
+})
 
 
 app.use(router.routes()).use(router.allowedMethods());

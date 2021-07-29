@@ -1,4 +1,4 @@
 <h4>一、可选链接运算符【？.】</h4><p><strong>可选链接运算符（Optional Chaining Operator）</strong>&nbsp;处于ES2020提案的第4阶段，因此应将其添加到规范中。它改变了访问对象内部属性的方式，尤其是深层嵌套的属性。它也可以作为TypeScript 3.7+中的功能使用。</p><p>相信大部分开发前端的的小伙伴们都会遇到null和未定义的属性。JS语言的动态特性使其无法不碰到它们。特别是在处理嵌套对象时，以下代码很常见：</p><pre><code class="JavaScript"><xmp>if (data && data.children && data.children[0] && data.children[0].title) {
     // I have a title!
 } 
-</xmp></code></pre>
+</xmp><xmp>consoel.log('aaa')</xmp></code></pre>

@@ -10,7 +10,8 @@ class ReEdit extends React.Component {
         this.state = {
             title:'',
             auther:'',
-            desc:''
+            desc:'',
+            id:''
         }
     }
     componentDidMount() {
@@ -30,11 +31,12 @@ class ReEdit extends React.Component {
         console.log(this.state);
         $('.saveEdit').html(editorEle.txt.html());
 
-        this.addTechnologyShare({
+        this.updateTechnologyShare({
             title:this.state.title,
             auther:this.state.auther,
             desc:this.state.desc,
-            content:editorEle.txt.html()
+            content:editorEle.txt.html(),
+            id:this.state.id
         });
     }
     autherChange(e){
@@ -55,8 +57,8 @@ class ReEdit extends React.Component {
     /**
      * 添加分享数据
      */
-    addTechnologyShare(params) {
-        fetch('/addTechnologyShare', {
+     updateTechnologyShare(params) {
+        fetch('/updateTechnologyShare', {
             method: "post",
             body: JSON.stringify(params) // must match 'Content-Type' header
         })
@@ -79,10 +81,13 @@ class ReEdit extends React.Component {
             })
             .then(function (myJson) {
               that.setState({
-                  detail: myJson.data.result[0]
+                  detail: myJson.data.result[0],
+                  title: myJson.data.result[0].title,
+                  auther: myJson.data.result[0].auther,
+                  desc: myJson.data.result[0].contentdesc,
+                  id: myJson.data.result[0].id
               })
               window.editorEle.txt.html(myJson.content) // 重新设置编辑器内容
-            //   $('.detail').append(myJson.content);
               console.log(myJson.data.result);
             }) .catch((err) =>{
                 console.log(err)
@@ -92,9 +97,9 @@ class ReEdit extends React.Component {
         return (
             <div className="edit">
                 <div className="form">
-                    <label className="edit_label" htmlFor="">作者:<input onChange={this.autherChange} className="edit_input" type="text" placeholder="auther(作者)" /></label>
-                    <label className="edit_label" htmlFor="">标题:<input onChange={this.titleChange} className="edit_input" type="text" placeholder="auther(标题)" /></label>
-                    <label className="edit_label" htmlFor="">简介:<input onChange={this.descChange} className="edit_input" type="text" placeholder="auther(简介)" /></label>
+                    <label className="edit_label" htmlFor="">作者:<input value={this.state.auther} onChange={this.autherChange} className="edit_input" type="text" placeholder="auther(作者)" /></label>
+                    <label className="edit_label" htmlFor="">标题:<input value={this.state.title} onChange={this.titleChange} className="edit_input" type="text" placeholder="auther(标题)" /></label>
+                    <label className="edit_label" htmlFor="">简介:<input value={this.state.desc} onChange={this.descChange} className="edit_input" type="text" placeholder="auther(简介)" /></label>
                 </div>
                 <div className="content">
                     <div className="edit1" >
