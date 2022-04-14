@@ -1,3 +1,11 @@
+/*
+ * @Author: your name
+ * @Date: 2021-07-17 16:35:53
+ * @LastEditTime: 2022-01-11 15:59:42
+ * @LastEditors: Please set LastEditors
+ * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @FilePath: \AppletNewd:\reactMusic\src\components\edit\Edit.tsx
+ */
 import React from 'react';
 import '../../style/edit/edit.less'
 class Edit extends React.Component {
@@ -54,7 +62,7 @@ class Edit extends React.Component {
      * 添加分享数据
      */
     addTechnologyShare(params) {
-        fetch('/addTechnologyShare', {
+        fetch('http://127.0.0.1:3332/common/addTechnologyShare', {
             method: "post",
             body: JSON.stringify(params) // must match 'Content-Type' header
         })

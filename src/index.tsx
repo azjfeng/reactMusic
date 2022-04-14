@@ -4,7 +4,7 @@ import './style/index.less'
 import App from './components/App.tsx';
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
-import todoApp from './store/reducers.tsx'
+import todoApp from './store/reducers'
 
 let store = createStore(todoApp)
 ReactDOM.render(

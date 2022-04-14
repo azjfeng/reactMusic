@@ -48,7 +48,7 @@ class Home extends React.Component<IProps, IState>{
   }
   getTechnologyShare() {
     const that = this;
-    fetch('/getTechnologyShare', {
+    fetch('http://127.0.0.1:3332/common/getTechnologyShare', {
       method: "post",
       body: JSON.stringify({ key: '111', value: '2132' }) // must match 'Content-Type' header
     })

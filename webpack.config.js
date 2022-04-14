@@ -8,7 +8,9 @@ module.exports = {
   output: {
     filename: "[name].js"
   },
-  externals: ['.tsx', '.js', '.json', '.vue', '.css', '.html', '.less'],
+  resolve:{
+    extensions: ['.tsx', '.js', '.json', '.vue', '.css', '.html', '.less'],
+  },
   module: {
     rules: [
       {
@@ -29,13 +31,13 @@ module.exports = {
         test: /\.less$/,
         use: ['style-loader', 'css-loader', 'less-loader']
       },
-      {
-        test: /\.(png|jpe?g|gif)$/i,
-        loader: 'file-loader',
-        options: {
-          outputPath: 'assets',
-        },
-      },
+      // {
+      //   test: /\.(png|jpe?g|gif)$/i,
+      //   loader: 'file-loader',
+      //   options: {
+      //     outputPath: 'assets',
+      //   },
+      // },
     ]
   },
   mode: "production",
@@ -46,19 +48,20 @@ module.exports = {
   // },
   plugins: [
     new HtmlWebpackPlugin({
-      title: "音乐播放器",
+      title: "azjfeng-boke",
       filename: "index.html",
       template: "./template/template.html",
     }),
-    new CopyWebpackPlugin({
-      patterns: [
-        { from: "src/assets", to: "assets" },
-      ],
-    })
+    // new CopyWebpackPlugin({
+    //   patterns: [
+    //     { from: "src/assets", to: "assets" },
+    //   ],
+    // })
   ],
   //压缩代码
   optimization: {
     minimize: true,
   },
   watch: true, //用来执行热更新
+  target: 'web'
 }

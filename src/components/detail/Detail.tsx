@@ -1,3 +1,11 @@
+/*
+ * @Author: your name
+ * @Date: 2021-07-21 14:22:51
+ * @LastEditTime: 2022-01-11 15:59:55
+ * @LastEditors: Please set LastEditors
+ * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @FilePath: \AppletNewd:\reactMusic\src\components\detail\Detail.tsx
+ */
 import React from 'react'
 import '../../style/md.less'
 import '../../style/detail/detail.less'
@@ -17,7 +25,7 @@ class Todo extends React.Component{
   }
   searchDetail(params){
     const that = this;
-    fetch('/getDetail', {
+    fetch('http://127.0.0.1:3332/common/getDetail', {
       method: "post",
       body: JSON.stringify(params) // must match 'Content-Type' header
     })
@@ -26,10 +34,10 @@ class Todo extends React.Component{
       })
       .then(function (myJson) {
         that.setState({
-            detail: myJson.data.result[0]
+            detail: myJson.result[0]
         })
         $('.detail').append(myJson.content);
-        console.log(myJson.data.result);
+        console.log(myJson.result);
       });
   }
   render(){

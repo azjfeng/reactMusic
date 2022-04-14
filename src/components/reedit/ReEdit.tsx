@@ -58,7 +58,7 @@ class ReEdit extends React.Component {
      * 添加分享数据
      */
      updateTechnologyShare(params) {
-        fetch('/updateTechnologyShare', {
+        fetch('http://127.0.0.1:3332/common/updateTechnologyShare', {
             method: "post",
             body: JSON.stringify(params) // must match 'Content-Type' header
         })
